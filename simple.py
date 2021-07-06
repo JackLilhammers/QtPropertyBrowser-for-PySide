@@ -40,9 +40,12 @@
 #############################################################################
 
 import sys
-
-sys.path.append('QtProperty')
-sys.path.append('libqt5')
+import os
+filePath = os.path.dirname(os.path.abspath(__file__))
+print(filePath)
+sys.path.append(os.path.join(filePath,'QtProperty'))
+sys.path.append(os.path.join(filePath,'libqt5'))
+print(sys.path)
 
 from PyQt5.QtWidgets import QApplication, QLineEdit
 from PyQt5.QtCore import (
