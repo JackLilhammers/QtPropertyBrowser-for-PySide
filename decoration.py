@@ -42,8 +42,8 @@ import sys
 
 sys.path.append('QtProperty')
 sys.path.append('libqt5')
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QApplication, QDoubleSpinBox
+from qtpy.QtCore import Signal
+from qtpy.QtWidgets import QApplication, QDoubleSpinBox
 from pyqtcore import QMap, QMapList
 from qtpropertymanager import QtDoublePropertyManager
 from qteditorfactory import QtAbstractEditorFactory, QtDoubleSpinBoxFactory, registerEditorFactory
@@ -51,8 +51,8 @@ from qtpropertybrowser import QtProperty
 from qttreepropertybrowser import QtTreePropertyBrowser
 
 class DecoratedDoublePropertyManager(QtDoublePropertyManager):
-    prefixChangedSignal = pyqtSignal(QtProperty, str)
-    suffixChangedSignal = pyqtSignal(QtProperty, str)
+    prefixChangedSignal = Signal(QtProperty, str)
+    suffixChangedSignal = Signal(QtProperty, str)
     class Data:
         prefix = ''
         suffix = ''

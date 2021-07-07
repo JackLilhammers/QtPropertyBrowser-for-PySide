@@ -39,8 +39,8 @@
 #############################################################################
 
 from qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
-from PyQt5.QtCore import QTimer, Qt, QSize, QRect, pyqtSignal
-from PyQt5.QtWidgets import (
+from qtpy.QtCore import QTimer, Qt, QSize, QRect, Signal
+from qtpy.QtWidgets import (
     QGridLayout,
     QToolButton,
     QLabel,
@@ -474,8 +474,8 @@ class QtButtonPropertyBrowserPrivate():
             item.widget.setToolTip(property.valueText())
 
 class QtButtonPropertyBrowser(QtAbstractPropertyBrowser):
-    collapsedSignal = pyqtSignal(QtBrowserItem)
-    expandedSignal = pyqtSignal(QtBrowserItem)
+    collapsedSignal = Signal(QtBrowserItem)
+    expandedSignal = Signal(QtBrowserItem)
     def __init__(self, parent=None):
         super(QtButtonPropertyBrowser, self).__init__(parent)
 

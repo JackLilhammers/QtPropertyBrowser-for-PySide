@@ -40,8 +40,8 @@
 #############################################################################
 
 from qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
-from PyQt5.QtCore import Qt, QRect, QSize, QEvent, QCoreApplication, pyqtSignal, pyqtProperty
-from PyQt5.QtWidgets import (
+from qtpy.QtCore import Qt, QRect, QSize, QEvent, QCoreApplication, Signal, Property
+from qtpy.QtWidgets import (
     QHBoxLayout, QItemDelegate,
     QHeaderView, QApplication, QStyle,
     QTreeWidget,
@@ -50,7 +50,7 @@ from PyQt5.QtWidgets import (
     QStyleOption,
     QAbstractItemView
     )
-from PyQt5.QtGui import (
+from qtpy.QtGui import (
     QIcon, QPainter,
     QPalette, QPen,
     QFontMetrics, QColor,
@@ -603,8 +603,8 @@ class QtPropertyEditorDelegate(QItemDelegate):
 ###
 class QtTreePropertyBrowser(QtAbstractPropertyBrowser):
     Interactive,Stretch,Fixed,ResizeToContents = range(4)
-    collapsedSignal = pyqtSignal(QtBrowserItem)
-    expandedSignal = pyqtSignal(QtBrowserItem)
+    collapsedSignal = Signal(QtBrowserItem)
+    expandedSignal = Signal(QtBrowserItem)
 
     def __init__(self,parent=None):
         super(QtTreePropertyBrowser, self).__init__(parent)
@@ -886,10 +886,10 @@ class QtTreePropertyBrowser(QtAbstractPropertyBrowser):
     ###
     #   Sets the current item to \a item and opens the relevant editor for it.
     ###
-    indentation = pyqtProperty(int, indentation, setIndentation)
-    rootIsDecorated = pyqtProperty(bool, rootIsDecorated, setRootIsDecorated)
-    alternatingRowColors = pyqtProperty(bool, alternatingRowColors, setAlternatingRowColors)
-    headerVisible = pyqtProperty(bool, isHeaderVisible, setHeaderVisible)
-    resizeMode = pyqtProperty(int, resizeMode, setResizeMode)
-    splitterPosition = pyqtProperty(int, splitterPosition, setSplitterPosition)
-    propertiesWithoutValueMarked = pyqtProperty(bool, propertiesWithoutValueMarked, setPropertiesWithoutValueMarked)
+    indentation = Property(int, indentation, setIndentation)
+    rootIsDecorated = Property(bool, rootIsDecorated, setRootIsDecorated)
+    alternatingRowColors = Property(bool, alternatingRowColors, setAlternatingRowColors)
+    headerVisible = Property(bool, isHeaderVisible, setHeaderVisible)
+    resizeMode = Property(int, resizeMode, setResizeMode)
+    splitterPosition = Property(int, splitterPosition, setSplitterPosition)
+    propertiesWithoutValueMarked = Property(bool, propertiesWithoutValueMarked, setPropertiesWithoutValueMarked)

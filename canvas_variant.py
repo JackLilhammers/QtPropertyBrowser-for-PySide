@@ -42,16 +42,16 @@ import sys
 
 sys.path.append('QtProperty')
 sys.path.append('libqt5')
-from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QDockWidget
-from PyQt5.QtCore import (
+from qtpy.QtWidgets import QApplication, QMainWindow, QAction, QDockWidget
+from qtpy.QtCore import (
     QPoint, 
     Qt, 
     QSize, 
     QVariant, 
-    pyqtSignal
+    Signal
     )
 from random import random
-from PyQt5.QtGui import QColor, QPen, QBrush
+from qtpy.QtGui import QColor, QPen, QBrush
 from pyqtcore import QMap
 from qttreepropertybrowser import QtTreePropertyBrowser
 from qtvariantproperty import (
@@ -73,8 +73,8 @@ def rand():
     return int(random()*0x7fff)
 
 class CanvasView(QtCanvasView):
-    itemClickedSignal = pyqtSignal(QtCanvasItem)
-    itemMovedSignal = pyqtSignal(QtCanvasItem)
+    itemClickedSignal = Signal(QtCanvasItem)
+    itemMovedSignal = Signal(QtCanvasItem)
     def __init__(self, arg1=None, arg2=None):
         if type(arg1)==QtCanvas:
             super(CanvasView, self).__init__(arg1, arg2)

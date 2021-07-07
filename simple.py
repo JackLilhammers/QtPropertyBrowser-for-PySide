@@ -47,8 +47,8 @@ sys.path.append(os.path.join(filePath,'QtProperty'))
 sys.path.append(os.path.join(filePath,'libqt5'))
 print(sys.path)
 
-from PyQt5.QtWidgets import QApplication, QLineEdit
-from PyQt5.QtCore import (
+from qtpy.QtWidgets import QApplication, QLineEdit
+from qtpy.QtCore import (
     QTranslator, 
     QVariant, 
     QDate, 
@@ -64,7 +64,7 @@ from PyQt5.QtCore import (
     QRectF
     )
 
-from PyQt5.QtGui import QKeySequence
+from qtpy.QtGui import QKeySequence
 from pyqtcore import QList
 from qtvariantproperty import QtVariantEditorFactory, QtVariantPropertyManager
 from qttreepropertybrowser import QtTreePropertyBrowser

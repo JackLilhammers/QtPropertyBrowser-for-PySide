@@ -83,8 +83,8 @@ from qtpropertymanager import (
     QtGroupPropertyManager
     )
 from pyqtcore import QMap, QMapMap, qMetaTypeId
-from PyQt5.QtCore import QVariant, pyqtSignal, QUrl
-from PyQt5.QtGui import QIcon, QKeySequence
+from qtpy.QtCore import QVariant, Signal, QUrl
+from qtpy.QtGui import QIcon, QKeySequence
 
 class QtEnumPropertyType():
     def __init__(self):
@@ -667,8 +667,8 @@ class QtVariantPropertyManagerPrivate():
 #    \sa setAttribute()
 ###
 class QtVariantPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QVariant)
-    attributeChangedSignal = pyqtSignal(QtProperty, str ,QVariant)
+    valueChangedSignal = Signal(QtProperty, QVariant)
+    attributeChangedSignal = Signal(QtProperty, str ,QVariant)
     ###
     #    Creates a manager with the given \a parent.
     ###

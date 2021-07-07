@@ -54,7 +54,7 @@ def rand():
 qrand = rand
 qgetenv = os.getenv
 
-from PyQt5.QtCore import (
+from qtpy.QtCore import (
     QSize, 
     QSizeF, 
     QByteArray

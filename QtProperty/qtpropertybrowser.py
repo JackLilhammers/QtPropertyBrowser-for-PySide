@@ -40,9 +40,9 @@
 #############################################################################
 
 import copy
-from PyQt5.QtCore import QObject, pyqtSignal
-from PyQt5.QtWidgets import QLineEdit, QWidget
-from PyQt5.QtGui import QIcon, QColor
+from qtpy.QtCore import QObject, Signal
+from qtpy.QtWidgets import QLineEdit, QWidget
+from qtpy.QtGui import QIcon, QColor
 
 from pyqtcore import QList, QMap, QMapList, QMapMapList
 
@@ -605,10 +605,10 @@ class QtAbstractPropertyManagerPrivate():
 #    \sa QtAbstractPropertyBrowser::setCurrentItem()
 ###
 class QtAbstractPropertyManager(QObject):
-    propertyInsertedSignal = pyqtSignal(QtProperty, QtProperty, list)
-    propertyChangedSignal = pyqtSignal(QtProperty)
-    propertyRemovedSignal = pyqtSignal(QtProperty, QtProperty)
-    propertyDestroyedSignal = pyqtSignal(QtProperty)
+    propertyInsertedSignal = Signal(QtProperty, QtProperty, list)
+    propertyChangedSignal = Signal(QtProperty)
+    propertyRemovedSignal = Signal(QtProperty, QtProperty)
+    propertyDestroyedSignal = Signal(QtProperty)
     ###
     #    Creates an abstract property manager with the given \a parent.
     ###
@@ -1483,7 +1483,7 @@ class QtAbstractPropertyBrowserPrivate():
 #    \sa QtProperty, items()
 ###
 class QtAbstractPropertyBrowser(QWidget):
-    currentItemChangedSignal = pyqtSignal(QtBrowserItem)
+    currentItemChangedSignal = Signal(QtBrowserItem)
     ###
     #    Creates an abstract property browser with the given \a parent.
     ###

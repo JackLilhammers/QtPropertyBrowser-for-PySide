@@ -39,8 +39,8 @@
 ##
 ############################################################################/
 
-from PyQt5.QtCore import Qt, QCoreApplication, QRectF, QEvent, pyqtSignal
-from PyQt5.QtWidgets import (
+from qtpy.QtCore import Qt, QCoreApplication, QRectF, QEvent, Signal
+from qtpy.QtWidgets import (
     QLineEdit,
     QWidget,
     QApplication,
@@ -49,7 +49,7 @@ from PyQt5.QtWidgets import (
     QStyleOption,
     QAction,
     QStyle)
-from PyQt5.QtGui import QIcon, QPainter, QCursor, QImage, QPixmap, QTextOption, QKeySequence, QFont
+from qtpy.QtGui import QIcon, QPainter, QCursor, QImage, QPixmap, QTextOption, QKeySequence, QFont
 from pyqtcore import QList, QMap
 import qtpropertybrowser_rc
 
@@ -189,7 +189,7 @@ class QtPropertyBrowserUtils():
         return QCoreApplication.translate("QtPropertyBrowserUtils", "[%s, %d]"%(f.family(), f.pointSize()))
 
 class QtBoolEdit(QWidget):
-    toggledSignal = pyqtSignal(bool)
+    toggledSignal = Signal(bool)
     def __init__(self,parent=None):
         super(QtBoolEdit, self).__init__(parent)
         self.m_checkBox = QCheckBox(self)
@@ -256,7 +256,7 @@ class QtBoolEdit(QWidget):
         self.style().drawPrimitive(QStyle.PE_Widget, opt, p, self)
 
 class QtKeySequenceEdit(QWidget):
-    keySequenceChangedSignal = pyqtSignal(QKeySequence)
+    keySequenceChangedSignal = Signal(QKeySequence)
     def __init__(self,parent=None):
         super(QtKeySequenceEdit, self).__init__(parent)
 

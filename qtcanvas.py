@@ -42,8 +42,8 @@ import sys
 sys.path.append('QtProperty')
 sys.path.append('libqt5')
 from array import array
-from PyQt5.QtGui import QTransform as QMatrix
-from PyQt5.QtCore import (
+from qtpy.QtGui import QTransform as QMatrix
+from qtpy.QtCore import (
     Qt, 
     QRect, 
     QTimer, 
@@ -51,10 +51,10 @@ from PyQt5.QtCore import (
     QSize, 
     qWarning, 
     QRectF, 
-    pyqtSignal, 
+    Signal, 
     QObject
 )
-from PyQt5.QtGui import (
+from qtpy.QtGui import (
     QRegion, 
     QImage, 
     QPolygon, 
@@ -67,7 +67,7 @@ from PyQt5.QtGui import (
     QFont, 
     QColor
 )
-from PyQt5.QtWidgets import (
+from qtpy.QtWidgets import (
     QWidget,
     QApplication, 
     QScrollArea
@@ -601,7 +601,7 @@ def scm(a, b):
 #    \sa QtCanvasView QtCanvasItem
 ###
 class QtCanvas(QObject):
-    resized = pyqtSignal()
+    resized = Signal()
     ###
     #    Create a QtCanvas with no size. \a parent is passed to the QObject
     #    superclass.

@@ -41,9 +41,9 @@
 import sys
 sys.path.append('QtProperty')
 sys.path.append('libqt5')
-from PyQt5.QtCore import QVariant, QTimeLine
-from PyQt5.QtGui import QTextDocument
-from PyQt5.QtWidgets import (
+from qtpy.QtCore import QVariant, QTimeLine
+from qtpy.QtGui import QTextDocument
+from qtpy.QtWidgets import (
     QDialog,
     QComboBox,
     QToolButton,

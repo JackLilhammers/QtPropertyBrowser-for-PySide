@@ -45,7 +45,7 @@ print(filePath)
 sys.path.append(os.path.join(filePath,'QtProperty'))
 sys.path.append(os.path.join(filePath,'libqt5'))
 print(sys.path)
-from PyQt5.QtWidgets import (
+from qtpy.QtWidgets import (
     QApplication, 
     QLabel, 
     QScrollArea, 
@@ -53,7 +53,7 @@ from PyQt5.QtWidgets import (
     QWidget,
     QFrame
     )
-from PyQt5.QtCore import Qt
+from qtpy.QtCore import Qt
 
 from pyqtcore import QMap, QList
 from qtpropertymanager import (
@@ -79,7 +79,7 @@ from qttreepropertybrowser import QtTreePropertyBrowser
 from qtgroupboxpropertybrowser import QtGroupBoxPropertyBrowser
 from qtbuttonpropertybrowser import QtButtonPropertyBrowser
 
-from PyQt5.QtGui import QIcon
+from qtpy.QtGui import QIcon
 import demo_rc
 
 if __name__ == '__main__':

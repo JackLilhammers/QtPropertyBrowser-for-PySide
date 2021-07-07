@@ -40,7 +40,7 @@
 #############################################################################
 
 import copy
-from PyQt5.QtCore import (
+from qtpy.QtCore import (
     QObject,
     QLocale,
     QSize,
@@ -56,19 +56,19 @@ from PyQt5.QtCore import (
     QTimer,
     qAddPostRoutine,
     QCoreApplication,
-    pyqtSignal,
+    Signal,
     QPointF,
-    pyqtProperty
+    Property
 )
 
-from PyQt5.QtWidgets import (
+from qtpy.QtWidgets import (
     QStyle,
     QApplication,
     QSizePolicy,
     QLineEdit,
     QStyleOptionButton
     )
-from PyQt5.QtGui import (
+from qtpy.QtGui import (
     QIcon,
     QPainter,
     QPixmap,
@@ -357,7 +357,7 @@ class QtMetaEnumWrapper(QObject):
 
     def policy(self):
         return QSizePolicy.Ignored
-    policy = pyqtProperty(QSizePolicy.Policy, fget=policy)
+    policy = Property(QSizePolicy.Policy, fget=policy)
 
 class QtMetaEnumProvider():
     def __init__(self):
@@ -392,12 +392,19 @@ class QtMetaEnumProvider():
 
     def initLocale(self):
         nameToLanguage={}
-        language = QLocale.C
-        while (language <= QLocale.LastLanguage):
-            locale = QLocale(language)
-            if (locale.language() == language):
+        allLocales = QLocale.matchingLocales(QLocale.AnyLanguage, QLocale.AnyScript, QLocale.AnyCountry)
+        for idx, SelectLocale in enumerate(allLocales):
+            language = SelectLocale.language()
+            if not SelectLocale.languageToString(SelectLocale.language()) in nameToLanguage:
                 nameToLanguage[language] = QLocale.languageToString(language)
-            language = language + 1
+        #nameToLanguage={}
+        #language = QLocale.C
+        #print("language = {}".format(QLocale.languageToString(language)))
+        #while (language <= QLocale.LastLanguage):
+            #locale = QLocale(language)
+            #if (locale.language() == language):
+                #nameToLanguage[language] = QLocale.languageToString(language)
+            #language = language + 1
 
         system = QLocale.system()
         sysLang = system.language()
@@ -586,10 +593,10 @@ class QtIntPropertyManagerPrivate():
 #    \sa setSingleStep()
 ###
 class QtIntPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, int)
-    rangeChangedSignal = pyqtSignal(QtProperty, int, int)
-    singleStepChangedSignal = pyqtSignal(QtProperty, int)
-    readOnlyChangedSignal = pyqtSignal(QtProperty, bool)
+    valueChangedSignal = Signal(QtProperty, int)
+    rangeChangedSignal = Signal(QtProperty, int, int)
+    singleStepChangedSignal = Signal(QtProperty, int)
+    readOnlyChangedSignal = Signal(QtProperty, bool)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -879,11 +886,11 @@ class QtDoublePropertyManagerPrivate():
 #    \sa setSingleStep()
 ###
 class QtDoublePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, float)
-    rangeChangedSignal = pyqtSignal(QtProperty, float, float)
-    singleStepChangedSignal = pyqtSignal(QtProperty, float)
-    decimalsChangedSignal = pyqtSignal(QtProperty, int)
-    readOnlyChangedSignal = pyqtSignal(QtProperty, bool)
+    valueChangedSignal = Signal(QtProperty, float)
+    rangeChangedSignal = Signal(QtProperty, float, float)
+    singleStepChangedSignal = Signal(QtProperty, float)
+    decimalsChangedSignal = Signal(QtProperty, int)
+    readOnlyChangedSignal = Signal(QtProperty, bool)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -1181,10 +1188,10 @@ class QtStringPropertyManagerPrivate():
 #    Creates a manager with the given \a parent.
 ###
 class QtStringPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, str)
-    regExpChangedSignal = pyqtSignal(QtProperty, QRegExp)
-    echoModeChangedSignal = pyqtSignal(QtProperty, int)
-    readOnlyChangedSignal = pyqtSignal(QtProperty, bool)
+    valueChangedSignal = Signal(QtProperty, str)
+    regExpChangedSignal = Signal(QtProperty, QRegExp)
+    echoModeChangedSignal = Signal(QtProperty, int)
+    readOnlyChangedSignal = Signal(QtProperty, bool)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -1432,8 +1439,8 @@ class QtBoolPropertyManagerPrivate():
 #    new \a value as parameters.
 ###
 class QtBoolPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, bool)
-    textVisibleChangedSignal = pyqtSignal(QtProperty, bool)
+    valueChangedSignal = Signal(QtProperty, bool)
+    textVisibleChangedSignal = Signal(QtProperty, bool)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -1607,8 +1614,8 @@ class QtDatePropertyManagerPrivate():
 #    \sa setRange()
 ###
 class QtDatePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty , QDate)
-    rangeChangedSignal = pyqtSignal(QtProperty , QDate, QDate)
+    valueChangedSignal = Signal(QtProperty , QDate)
+    rangeChangedSignal = Signal(QtProperty , QDate, QDate)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -1780,7 +1787,7 @@ class QtTimePropertyManagerPrivate():
 #    \sa setValue()
 ###
 class QtTimePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QTime)
+    valueChangedSignal = Signal(QtProperty, QTime)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -1874,7 +1881,7 @@ class QtDateTimePropertyManagerPrivate():
 ###
 #
 class QtDateTimePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QDateTime)
+    valueChangedSignal = Signal(QtProperty, QDateTime)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -1972,7 +1979,7 @@ class QtKeySequencePropertyManagerPrivate():
 #    \a value as parameters.
 ###
 class QtKeySequencePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QKeySequence)
+    valueChangedSignal = Signal(QtProperty, QKeySequence)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -2062,7 +2069,7 @@ class QtCharPropertyManagerPrivate():
 ###
 #
 class QtCharPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, str)
+    valueChangedSignal = Signal(QtProperty, str)
     ###
     #    Creates a manager with the given \a parent.
     ###
@@ -2208,7 +2215,7 @@ class QtLocalePropertyManagerPrivate():
 ###
 #
 class QtLocalePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QLocale)
+    valueChangedSignal = Signal(QtProperty, QLocale)
     ###
     #    Creates a manager with the given \a parent.
     ###
@@ -2416,7 +2423,7 @@ class QtPointPropertyManagerPrivate():
 #    \sa setValue()
 ###
 class QtPointPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QPoint)
+    valueChangedSignal = Signal(QtProperty, QPoint)
     ###
     #    Creates a manager with the given \a parent.
     ###
@@ -2614,8 +2621,8 @@ class QtPointFPropertyManagerPrivate():
 #    Creates a manager with the given \a parent.
 ###
 class QtPointFPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QPointF)
-    decimalsChangedSignal = pyqtSignal(QtProperty, int)
+    valueChangedSignal = Signal(QtProperty, QPointF)
+    decimalsChangedSignal = Signal(QtProperty, int)
     ###
     #    Creates a manager with the given \a parent.
     ###
@@ -2897,8 +2904,8 @@ class QtSizePropertyManagerPrivate():
 ###
 #
 class QtSizePropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QSize)
-    rangeChangedSignal = pyqtSignal(QtProperty, QSize, QSize)
+    valueChangedSignal = Signal(QtProperty, QSize)
+    rangeChangedSignal = Signal(QtProperty, QSize, QSize)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -3218,9 +3225,9 @@ class QtSizeFPropertyManagerPrivate():
 ###
 #
 class QtSizeFPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QSizeF)
-    rangeChangedSignal = pyqtSignal(QtProperty, QSizeF, QSizeF)
-    decimalsChangedSignal = pyqtSignal(QtProperty, int)
+    valueChangedSignal = Signal(QtProperty, QSizeF)
+    rangeChangedSignal = Signal(QtProperty, QSizeF, QSizeF)
+    decimalsChangedSignal = Signal(QtProperty, int)
     ###
     #    Creates a manager with the given \a parent.
     ###
@@ -3603,8 +3610,8 @@ class QtRectPropertyManagerPrivate():
 ###
 #
 class QtRectPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QRect)
-    constraintChangedSignal = pyqtSignal(QtProperty, QRect)
+    valueChangedSignal = Signal(QtProperty, QRect)
+    constraintChangedSignal = Signal(QtProperty, QRect)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -3996,9 +4003,9 @@ class QtRectFPropertyManagerPrivate():
 ###
 #
 class QtRectFPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QRectF)
-    constraintChangedSignal = pyqtSignal(QtProperty, QRectF)
-    decimalsChangedSignal = pyqtSignal(QtProperty, int)
+    valueChangedSignal = Signal(QtProperty, QRectF)
+    constraintChangedSignal = Signal(QtProperty, QRectF)
+    decimalsChangedSignal = Signal(QtProperty, int)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -4347,9 +4354,9 @@ class QtEnumPropertyManagerPrivate():
 ###
 #
 class QtEnumPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, int)
-    enumNamesChangedSignal = pyqtSignal(QtProperty, QList)
-    enumIconsChangedSignal = pyqtSignal(QtProperty, QMap)
+    valueChangedSignal = Signal(QtProperty, int)
+    enumNamesChangedSignal = Signal(QtProperty, QList)
+    enumIconsChangedSignal = Signal(QtProperty, QMap)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -4613,8 +4620,8 @@ class QtFlagPropertyManagerPrivate():
 ###
 #
 class QtFlagPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, int)
-    flagNamesChangedSignal = pyqtSignal(QtProperty, QList)
+    valueChangedSignal = Signal(QtProperty, int)
+    flagNamesChangedSignal = Signal(QtProperty, QList)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -4892,7 +4899,7 @@ class QtSizePolicyPropertyManagerPrivate():
 ###
 #
 class QtSizePolicyPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QSizePolicy)
+    valueChangedSignal = Signal(QtProperty, QSizePolicy)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -5267,7 +5274,7 @@ class QtFontPropertyManagerPrivate():
 ###
 #
 class QtFontPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QFont)
+    valueChangedSignal = Signal(QtProperty, QFont)
 
     ###
     #    Creates a manager with the given \a parent.
@@ -5611,7 +5618,7 @@ class QtColorPropertyManagerPrivate():
 ###
 #
 class QtColorPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QColor)
+    valueChangedSignal = Signal(QtProperty, QColor)
     ###
     #    Creates a manager with the given \a parent.
     ###
@@ -5823,7 +5830,7 @@ def clearCursorDatabase():
     cursorDatabase().clear()
 
 class QtCursorPropertyManager(QtAbstractPropertyManager):
-    valueChangedSignal = pyqtSignal(QtProperty, QCursor)
+    valueChangedSignal = Signal(QtProperty, QCursor)
     ###
     #    Creates a manager with the given \a parent.
     ###

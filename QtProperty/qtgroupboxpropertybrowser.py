@@ -39,8 +39,8 @@
 #############################################################################
 
 from qtpropertybrowser import QtAbstractPropertyBrowser
-from PyQt5.QtCore import Qt, QTimer, QRect
-from PyQt5.QtWidgets import (
+from qtpy.QtCore import Qt, QTimer, QRect
+from qtpy.QtWidgets import (
     QGridLayout, QLabel, QGroupBox, QSizePolicy, QSpacerItem,
     QFrame
     )

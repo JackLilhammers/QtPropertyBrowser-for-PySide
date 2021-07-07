@@ -47,8 +47,8 @@ from qtpropertybrowserutils import (
 from pyqtcore import QMapList, QList, QMap
 from qtpropertybrowser import QtAbstractEditorFactory
 from qtpropertymanager import QtEnumPropertyManager, cursorDatabase
-from PyQt5.QtCore import Qt, QEvent, pyqtSignal
-from PyQt5.QtWidgets import (
+from qtpy.QtCore import Qt, QEvent, Signal
+from qtpy.QtWidgets import (
     QStyle,
     QWidget,
     QSpinBox,
@@ -72,7 +72,7 @@ from PyQt5.QtWidgets import (
     QLabel
 
     )
-from PyQt5.QtGui import (
+from qtpy.QtGui import (
     QPainter,
     QRegExpValidator,
     QKeySequence,
@@ -1225,7 +1225,7 @@ class QtKeySequenceEditorFactory(QtAbstractEditorFactory):
         manager.valueChangedSignal.disconnect(self.d_ptr.slotPropertyChanged)
 
 class QtCharEdit(QWidget):
-    valueChangedSignal = pyqtSignal(str)
+    valueChangedSignal = Signal(str)
     def __init__(self, parent=None):
         super(QtCharEdit, self).__init__(parent)
 
@@ -1679,7 +1679,7 @@ class QtCursorEditorFactory(QtAbstractEditorFactory):
     # QtColorEditWidget
 
 class QtColorEditWidget(QWidget):
-    valueChangedSignal = pyqtSignal(QColor)
+    valueChangedSignal = Signal(QColor)
     def __init__(self, parent=None):
         super(QtColorEditWidget, self).__init__(parent)
 
@@ -1816,7 +1816,7 @@ class QtColorEditorFactory(QtAbstractEditorFactory):
     # QtFontEditWidget
 
 class QtFontEditWidget(QWidget):
-    valueChanged = pyqtSignal(QFont)
+    valueChanged = Signal(QFont)
 
     def __init__(self, parent=None):
         super(QtFontEditWidget, self).__init__(parent)
