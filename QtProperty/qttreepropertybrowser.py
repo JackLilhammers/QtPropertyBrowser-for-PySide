@@ -358,7 +358,7 @@ class QtPropertyEditorView(QTreeWidget):
                 opt.palette.setColor(QPalette.AlternateBase, c.lighter(112))
 
         super(QtPropertyEditorView, self).drawRow(painter, opt, index)
-        color = QApplication.style().styleHint(QStyle.SH_Table_GridLineColor, opt)
+        color = QApplication.style().styleHint(QStyle.SH_Table_GridLineColor, opt) & 0xFFFFFFFF
         painter.save()
         painter.setPen(QPen(QColor(color)))
         painter.drawLine(opt.rect.x(), opt.rect.bottom(), opt.rect.right(), opt.rect.bottom())
