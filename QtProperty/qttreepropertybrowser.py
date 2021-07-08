@@ -38,7 +38,7 @@
 ## $QT_END_LICENSE$
 ##
 #############################################################################
-
+import ctypes
 from qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
 from qtpy.QtCore import Qt, QRect, QSize, QEvent, QCoreApplication, Signal, Property
 from qtpy.QtWidgets import (
@@ -358,7 +358,7 @@ class QtPropertyEditorView(QTreeWidget):
                 opt.palette.setColor(QPalette.AlternateBase, c.lighter(112))
 
         super(QtPropertyEditorView, self).drawRow(painter, opt, index)
-        color = QApplication.style().styleHint(QStyle.SH_Table_GridLineColor, opt) & 0xFFFFFFFF
+        color = ctypes.c_ulong(QApplication.style().styleHint(QStyle.SH_Table_GridLineColor, opt)).value
         painter.save()
         painter.setPen(QPen(QColor(color)))
         painter.drawLine(opt.rect.x(), opt.rect.bottom(), opt.rect.right(), opt.rect.bottom())
@@ -521,9 +521,9 @@ class QtPropertyEditorDelegate(QItemDelegate):
             self.m_disablePainting = False
 
         opt.palette.setCurrentColorGroup(QPalette.Active)
-        color = QApplication.style().styleHint(QStyle.SH_Table_GridLineColor, opt)
+        color = ctypes.c_ulong(QApplication.style().styleHint(QStyle.SH_Table_GridLineColor, opt)).value
         painter.save()
-        painter.setPen(QPen(color))
+        painter.setPen(QPen(QColor(color)))
         if (not self.m_editorPrivate or (not self.m_editorPrivate.lastColumn(index.column()) and hasValue)):
             if option.direction == Qt.LeftToRight:
                 right = option.rect.right()

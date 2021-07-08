@@ -39,8 +39,11 @@
 ##
 #############################################################################
 import sys
-sys.path.append('QtProperty')
-sys.path.append('libqt5')
+import os
+filePath = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(filePath,'QtProperty'))
+sys.path.append(os.path.join(filePath,'libqt5'))
+#print(sys.path)
 from array import array
 from qtpy.QtGui import QTransform as QMatrix
 from qtpy.QtCore import (

@@ -78,7 +78,7 @@ class QtGroupBoxPropertyBrowserPrivate():
         item = QSpacerItem(0, 0, QSizePolicy.Fixed, QSizePolicy.Expanding)
         self.m_mainLayout.addItem(item, 0, 0)
 
-    def slotEditorDestroyed(self):
+    def slotEditorDestroyed(self): #bug in
         editor = self.q_ptr.sender()
         if (not editor):
             return

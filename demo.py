@@ -246,4 +246,4 @@ if __name__ == '__main__':
     w.showMaximized()
     w.show()
 
-    ret = app.exec()
+    sys.exit(app.exec_())

@@ -406,7 +406,7 @@ class QtButtonPropertyBrowserPrivate():
     def insertRow(self, layout, row):
         itemToPos = QMap()
         idx = 0
-        while (idx < len(layout)):
+        while (idx < layout.count()):
             r, c, rs, cs = layout.getItemPosition(idx)
             if (r >= row):
                 itemToPos[layout.takeAt(idx)] = QRect(r + 1, c, rs, cs)
