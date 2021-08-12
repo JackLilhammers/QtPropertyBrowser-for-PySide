@@ -40,11 +40,11 @@
 #############################################################################
 
 import copy
-from qtpy.QtCore import QObject, Signal
-from qtpy.QtWidgets import QLineEdit, QWidget
-from qtpy.QtGui import QIcon, QColor
+from PySide2.QtCore import QObject, Signal
+from PySide2.QtWidgets import QLineEdit, QWidget
+from PySide2.QtGui import QIcon, QColor
 
-from pyqtcore import QList, QMap, QMapList, QMapMapList
+from libqt5.pyqtcore import QList, QMap, QMapList, QMapMapList
 
 g_viewToManagerToFactory = None
 def m_viewToManagerToFactory():
@@ -75,7 +75,7 @@ class QtPropertyPrivate():
         self.m_name = ''
         self.m_nameColor = QColor()
         self.m_valueColor = QColor()
-        
+
 ###
 #    \class QtProperty
 #
@@ -133,7 +133,7 @@ class QtProperty():
     def __init__(self, manager=None):
         self.d__ptr = QtPropertyPrivate(manager)
         self.d__ptr.q_ptr = self
-        
+
     ###
     #    Destroys this property.
     #
@@ -161,7 +161,7 @@ class QtProperty():
 
         for property in self.d__ptr.m_parentItems:
             property.d__ptr.m_subItems.removeAll(self)
-            
+
     ###
     #    Returns the set of subproperties.
     #
@@ -1563,7 +1563,7 @@ class QtAbstractPropertyBrowser(QWidget):
             indexes = self.d__ptr.m_propertyToIndexes.get(parentProperty)
             if not indexes:
                 return
-                
+
             for idx in indexes:
                 parentToAfter[idx] = 0
         else:

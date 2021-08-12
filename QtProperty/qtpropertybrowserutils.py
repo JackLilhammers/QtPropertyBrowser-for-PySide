@@ -39,8 +39,8 @@
 ##
 ############################################################################/
 
-from qtpy.QtCore import Qt, QCoreApplication, QRectF, QEvent, Signal
-from qtpy.QtWidgets import (
+from PySide2.QtCore import Qt, QCoreApplication, QRectF, QEvent, Signal
+from PySide2.QtWidgets import (
     QLineEdit,
     QWidget,
     QApplication,
@@ -48,10 +48,11 @@ from qtpy.QtWidgets import (
     QCheckBox,
     QStyleOption,
     QAction,
-    QStyle)
-from qtpy.QtGui import QIcon, QPainter, QCursor, QImage, QPixmap, QTextOption, QKeySequence, QFont
-from pyqtcore import QList, QMap
-import qtpropertybrowser_rc
+    QStyle
+)
+from PySide2.QtGui import QIcon, QPainter, QCursor, QImage, QPixmap, QTextOption, QKeySequence, QFont
+from libqt5.pyqtcore import QList, QMap
+import QtProperty.qtpropertybrowser_rc as qtpropertybrowser_rc
 
 class QtCursorDatabase():
     def __init__(self):

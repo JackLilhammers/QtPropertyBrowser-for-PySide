@@ -38,16 +38,16 @@
 ##
 #############################################################################
 
-from qtpropertybrowser import QtAbstractPropertyBrowser
-from qtpy.QtCore import Qt, QTimer, QRect
-from qtpy.QtWidgets import (
+from QtProperty.qtpropertybrowser import QtAbstractPropertyBrowser
+from PySide2.QtCore import Qt, QTimer, QRect
+from PySide2.QtWidgets import (
     QGridLayout, QLabel, QGroupBox, QSizePolicy, QSpacerItem,
     QFrame
-    )
-from pyqtcore import (
+)
+from libqt5.pyqtcore import (
     QList,
     QMap
-    )
+)
 class WidgetItem():
     def __init__(self):
         self.widget = 0# can be null
@@ -458,7 +458,7 @@ class QtGroupBoxPropertyBrowser(QtAbstractPropertyBrowser):
     ###
     def scrollPosition(self):
         return 0, 0
-    
+
     ###
     #   Set scroll bars position
     ###

@@ -40,33 +40,28 @@
 #############################################################################
 
 import sys
-import os
-filePath = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(filePath,'QtProperty'))
-sys.path.append(os.path.join(filePath,'libqt5'))
-#print(sys.path)
 
-from qtpy.QtWidgets import QApplication, QLineEdit
-from qtpy.QtCore import (
-    QTranslator, 
-    QVariant, 
-    QDate, 
-    QTime, 
-    QDateTime, 
-    Qt, 
-    QLocale, 
-    QPoint, 
-    QPointF, 
-    QSize, 
-    QSizeF, 
-    QRect, 
+from libqt5.compat import QVariant
+from PySide2.QtWidgets import QApplication, QLineEdit
+from PySide2.QtCore import (
+    QTranslator,
+    QDate,
+    QTime,
+    QDateTime,
+    Qt,
+    QLocale,
+    QPoint,
+    QPointF,
+    QSize,
+    QSizeF,
+    QRect,
     QRectF
-    )
+)
 
-from qtpy.QtGui import QKeySequence
-from pyqtcore import QList
-from qtvariantproperty import QtVariantEditorFactory, QtVariantPropertyManager
-from qttreepropertybrowser import QtTreePropertyBrowser
+from PySide2.QtGui import QKeySequence
+from libqt5.pyqtcore import QList
+from QtProperty.qtvariantproperty import QtVariantEditorFactory, QtVariantPropertyManager
+from QtProperty.qttreepropertybrowser import QtTreePropertyBrowser
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -40,7 +40,7 @@
 #############################################################################
 
 import copy
-from qtpy.QtCore import (
+from PySide2.QtCore import (
     QObject,
     QLocale,
     QSize,
@@ -61,14 +61,14 @@ from qtpy.QtCore import (
     Property
 )
 
-from qtpy.QtWidgets import (
+from PySide2.QtWidgets import (
     QStyle,
     QApplication,
     QSizePolicy,
     QLineEdit,
     QStyleOptionButton
-    )
-from qtpy.QtGui import (
+)
+from PySide2.QtGui import (
     QIcon,
     QPainter,
     QPixmap,
@@ -78,11 +78,11 @@ from qtpy.QtGui import (
     QFont,
     QColor,
     QBrush
-    )
+)
 
-from qtpropertybrowser import QtProperty, QtAbstractPropertyManager
-from qtpropertybrowserutils import QtPropertyBrowserUtils, QtCursorDatabase
-from pyqtcore import QList, QMap, QMapList, QMapMap, INT_MAX, INT_MIN
+from QtProperty.qtpropertybrowser import QtProperty, QtAbstractPropertyManager
+from QtProperty.qtpropertybrowserutils import QtPropertyBrowserUtils, QtCursorDatabase
+from libqt5.pyqtcore import QList, QMap, QMapList, QMapMap, INT_MAX, INT_MIN
 
 DATA_VAL            = 1
 DATA_MINVAL         = 2

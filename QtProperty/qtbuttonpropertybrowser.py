@@ -38,18 +38,17 @@
 ##
 #############################################################################
 
-from qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
-from qtpy.QtCore import QTimer, Qt, QSize, QRect, Signal
-from qtpy.QtWidgets import (
+from QtProperty.qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
+from PySide2.QtCore import QTimer, Qt, QSize, QRect, Signal
+from PySide2.QtWidgets import (
     QGridLayout,
     QToolButton,
     QLabel,
     QSizePolicy,
     QSpacerItem,
     QFrame
-
-    )
-from pyqtcore import QList, QMap
+)
+from libqt5.pyqtcore import QList, QMap
 
 ###
 #    \class QtButtonPropertyBrowser
@@ -543,10 +542,10 @@ class QtButtonPropertyBrowser(QtAbstractPropertyBrowser):
     ###
     def scrollPosition(self):
         return 0, 0
-    
+
     ###
     #   Set scroll bars position
     ###
     def setScrollPosition(self, dx, dy):
         pass
-    
+

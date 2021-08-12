@@ -39,47 +39,44 @@
 ##
 #############################################################################
 import sys
-import os
-filePath = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(filePath,'QtProperty'))
-sys.path.append(os.path.join(filePath,'libqt5'))
-#print(sys.path)
-from qtpy.QtWidgets import QApplication, QMainWindow, QAction, QDockWidget
-from qtpy.QtCore import (
-    QPoint, 
-    Qt, 
-    QSize, 
+
+from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QDockWidget
+from PySide2.QtCore import (
+    QPoint,
+    Qt,
+    QSize,
     Signal
-    )
+)
 from random import random
-from qtpy.QtGui import QColor, QPen, QFont, QBrush
-from pyqtcore import QMap
-from qttreepropertybrowser import QtTreePropertyBrowser
-from qtpropertymanager import (
-    QtDoublePropertyManager, 
-    QtStringPropertyManager, 
-    QtColorPropertyManager, 
-    QtFontPropertyManager, 
+from PySide2.QtGui import QColor, QPen, QFont, QBrush
+from libqt5.pyqtcore import QMap
+from QtProperty.qttreepropertybrowser import QtTreePropertyBrowser
+from QtProperty.qtpropertymanager import (
+    QtDoublePropertyManager,
+    QtStringPropertyManager,
+    QtColorPropertyManager,
+    QtFontPropertyManager,
     QtPointPropertyManager,
     QtSizePropertyManager
 )
-from qteditorfactory import (
-    QtDoubleSpinBoxFactory, 
-    QtCheckBoxFactory, 
-    QtSpinBoxFactory, 
-    QtLineEditFactory, 
+from QtProperty.qteditorfactory import (
+    QtDoubleSpinBoxFactory,
+    QtCheckBoxFactory,
+    QtSpinBoxFactory,
+    QtLineEditFactory,
     QtEnumEditorFactory
 )
 from qtcanvas import (
-    QtCanvas, 
-    QtCanvasView, 
-    QtCanvasRectangle, 
-    QtCanvasEllipse, 
-    QtCanvasLine, 
-    QtCanvasText, 
-    QtCanvasItem, 
+    QtCanvas,
+    QtCanvasView,
+    QtCanvasRectangle,
+    QtCanvasEllipse,
+    QtCanvasLine,
+    QtCanvasText,
+    QtCanvasItem,
     RttiValues
-    )
+)
+
 def rand():
     return int(random()*0x7fff)
 

@@ -39,47 +39,42 @@
 ##
 ############################################################################/
 import sys
-import os
-filePath = os.path.dirname(os.path.abspath(__file__))
-print(filePath)
-sys.path.append(os.path.join(filePath,'QtProperty'))
-sys.path.append(os.path.join(filePath,'libqt5'))
-print(sys.path)
-from qtpy.QtWidgets import (
-    QApplication, 
-    QLabel, 
-    QScrollArea, 
-    QGridLayout, 
+
+from PySide2.QtWidgets import (
+    QApplication,
+    QLabel,
+    QScrollArea,
+    QGridLayout,
     QWidget,
     QFrame
-    )
-from qtpy.QtCore import Qt
+)
+from PySide2.QtCore import Qt
 
-from pyqtcore import QMap, QList
-from qtpropertymanager import (
-    QtBoolPropertyManager, 
-    QtIntPropertyManager, 
-    QtStringPropertyManager, 
-    QtSizePropertyManager, 
-    QtRectPropertyManager, 
-    QtSizePolicyPropertyManager, 
-    QtEnumPropertyManager, 
+from libqt5.pyqtcore import QMap, QList
+from QtProperty.qtpropertymanager import (
+    QtBoolPropertyManager,
+    QtIntPropertyManager,
+    QtStringPropertyManager,
+    QtSizePropertyManager,
+    QtRectPropertyManager,
+    QtSizePolicyPropertyManager,
+    QtEnumPropertyManager,
     QtGroupPropertyManager
-    )
-from qteditorfactory import (
-    QtCheckBoxFactory, 
-    QtSpinBoxFactory, 
-    QtSliderFactory, 
-    QtScrollBarFactory, 
-    QtLineEditFactory, 
+)
+from QtProperty.qteditorfactory import (
+    QtCheckBoxFactory,
+    QtSpinBoxFactory,
+    QtSliderFactory,
+    QtScrollBarFactory,
+    QtLineEditFactory,
     QtEnumEditorFactory
-    )
+)
 
-from qttreepropertybrowser import QtTreePropertyBrowser
-from qtgroupboxpropertybrowser import QtGroupBoxPropertyBrowser
-from qtbuttonpropertybrowser import QtButtonPropertyBrowser
+from QtProperty.qttreepropertybrowser import QtTreePropertyBrowser
+from QtProperty.qtgroupboxpropertybrowser import QtGroupBoxPropertyBrowser
+from QtProperty.qtbuttonpropertybrowser import QtButtonPropertyBrowser
 
-from qtpy.QtGui import QIcon
+from PySide2.QtGui import QIcon
 import demo_rc
 
 if __name__ == '__main__':

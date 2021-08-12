@@ -25,6 +25,7 @@ RAND_MAX = 0x7FFF
 
 import random
 import os
+
 def Int(s, defValue = 0):
     try:
         return int(s)
@@ -36,7 +37,7 @@ def Int2(s, defValue = 0):
         return int(s), True
     except:
         return defValue, False
-        
+
 def Float(s, defValue = 0.0):
     try:
         return float(s)
@@ -54,9 +55,9 @@ def rand():
 qrand = rand
 qgetenv = os.getenv
 
-from qtpy.QtCore import (
-    QSize, 
-    QSizeF, 
+from PySide2.QtCore import (
+    QSize,
+    QSizeF,
     QByteArray
 )
 
@@ -70,12 +71,12 @@ def qMetaTypeId(classType):
 
 def qMettaTypeIds():
     return g_metaTypeIds.values()
-    
+
 def dynamic_cast(object, _type):
     if type(object) == _type:
         return object
     return None
-    
+
 def qBoundSize(minVal, val, maxVal):
     t1 = type(minVal)
     t2 = type(val)
@@ -116,10 +117,10 @@ class QSet(set):
 
     def contains(self, item):
         return item in self
-    
+
     def isEmpty(self):
         return self.__len__()==0
-    
+
     def at(self, index):
         if index<0 or index>=self.__len__():
             return None
@@ -128,25 +129,25 @@ class QSet(set):
             if i==index:
                 return x
             i += 1
-            
+
     def begin(self):
         return self.at(0)
-    
+
     def size(self):
         return self.__len__()
-        
+
     def remove(self, item):
         if self.__contains__(item):
             super().remove(item)
-            
+
 class QList(list):
     def __init__(self, args=[]):
         if args is not None:
             super(QList, self).__init__(args)
-    
+
     def contains(self, item):
         return self.__contains__(item)
-        
+
     def removeAll(self, item):
         n = 0
         for i in range(self.__len__()-1, -1, -1):
@@ -154,12 +155,12 @@ class QList(list):
                 self.__delitem__(i)
                 n += 1
         return n
-    
+
     def remove(self, index):
         if index < 0 or index >= self.__len__():
             return
         self.__delitem__(index)
-        
+
     def removeAt(self, index):
         if index < 0 or index >= self.__len__():
             return
@@ -230,7 +231,7 @@ class QList(list):
     def erase(self, _from, to=None):
         if to is None:
             to = _from + 1
-        
+
         l = self.__len__()
         if l < 1:
             return
@@ -239,19 +240,19 @@ class QList(list):
         if _from < 0:
             _from = 0
         count = to - _from
-        
+
         if count < 1:
             return
         for i in range(count):
             self.__delitem__[_from]
-    
+
     def takeAt(self, index):
         if index<0 or index>=self.__len__():
             return None
         item = self.__getitem__(index)
         self.__delitem__(index)
         return item
-    
+
     def move(self, index, to):
         l = self.__len__()
         if index<0 or index>=l:
@@ -263,7 +264,7 @@ class QList(list):
         item = self.__getitem__(index)
         self.__delitem__(index)
         self.insert(to, item)
-            
+
 class QMap(QList):
     def __init__(self, key=None, value=None):
         super(QMap, self).__init__()
@@ -331,7 +332,7 @@ class QMap(QList):
     def take(self, key):
         v = self.__getitem__(key)
         if v==None:
-            return None 
+            return None
         self.remove(key)
         return v
 
@@ -349,13 +350,13 @@ class QMap(QList):
             index += 1
 
         return _keyfind
-        
+
     def upperBound(self, key):
         keys = self.keys()
         _keyfind = len(keys)
 
         _keys = QSet(keys)
-        
+
         _keys = sorted(_keys)
         index = 0
         for _key in _keys:
@@ -387,7 +388,7 @@ class QMapList(QMap):
         if not v:
             return defvalue
         return v
-    
+
     def value(self, key, defvalue=QList()):
         v = super(QMapList, self).__getitem__(key)
         if not v:
@@ -445,11 +446,11 @@ class QVector(QList):
 
         for i in range(n-l):
             self.append(0)
-        
+
 class QString(str):
     def __init__(self, s=''):
         super(QString, self).__init__()
-        
+
         self.length = self.__len__
         self.startsWith = self.startswith
         self.endsWith = self.endswith
@@ -495,7 +496,7 @@ class QString(str):
         if self.__contains__(subStr):
             return super().index(subStr)
         return -1
-        
+
 class QChar(str):
     def __init__(self, s=''):
         super(QChar, self).__init__()

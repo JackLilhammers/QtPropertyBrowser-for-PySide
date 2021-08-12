@@ -39,7 +39,7 @@
 ##
 #############################################################################
 
-from qteditorfactory import (
+from QtProperty.qteditorfactory import (
     QtAbstractEditorFactory,
     QtSpinBoxFactory,
     QtCheckBoxFactory,
@@ -54,9 +54,9 @@ from qteditorfactory import (
     QtCursorEditorFactory,
     QtColorEditorFactory,
     QtFontEditorFactory
-    )
-from qtpropertybrowser import QtProperty
-from qtpropertymanager import (
+)
+from QtProperty.qtpropertybrowser import QtProperty
+from QtProperty.qtpropertymanager import (
     QtAbstractPropertyManager,
     QtIntPropertyManager,
     QtBoolPropertyManager,
@@ -81,10 +81,11 @@ from qtpropertymanager import (
     QtColorPropertyManager,
     QtCursorPropertyManager,
     QtGroupPropertyManager
-    )
-from pyqtcore import QMap, QMapMap, qMetaTypeId
-from qtpy.QtCore import QVariant, Signal, QUrl
-from qtpy.QtGui import QIcon, QKeySequence
+)
+from libqt5.pyqtcore import QMap, QMapMap, qMetaTypeId
+from libqt5.compat import QVariant
+from PySide2.QtCore import Signal, QUrl
+from PySide2.QtGui import QIcon, QKeySequence
 
 class QtEnumPropertyType():
     def __init__(self):
@@ -101,7 +102,7 @@ class QtGroupPropertyType():
 class QtIconMap():
     def __init__(self):
         pass
-        
+
 g_propertyToWrappedProperty = None
 def propertyToWrappedProperty():
     global g_propertyToWrappedProperty

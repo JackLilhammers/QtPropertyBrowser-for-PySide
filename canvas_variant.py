@@ -39,37 +39,33 @@
 ##
 #############################################################################
 import sys
-import os
-filePath = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(filePath,'QtProperty'))
-sys.path.append(os.path.join(filePath,'libqt5'))
-#print(sys.path)
-from qtpy.QtWidgets import QApplication, QMainWindow, QAction, QDockWidget
-from qtpy.QtCore import (
-    QPoint, 
-    Qt, 
-    QSize, 
-    QVariant, 
+
+from libqt5.compat import QVariant
+from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QDockWidget
+from PySide2.QtCore import (
+    QPoint,
+    Qt,
+    QSize,
     Signal
-    )
+)
 from random import random
-from qtpy.QtGui import QColor, QPen, QBrush
-from pyqtcore import QMap
-from qttreepropertybrowser import QtTreePropertyBrowser
-from qtvariantproperty import (
-    QtVariantPropertyManager, 
+from PySide2.QtGui import QColor, QPen, QBrush
+from libqt5.pyqtcore import QMap
+from QtProperty.qttreepropertybrowser import QtTreePropertyBrowser
+from QtProperty.qtvariantproperty import (
+    QtVariantPropertyManager,
     QtVariantEditorFactory
 )
 from qtcanvas import (
-    QtCanvas, 
-    QtCanvasView, 
-    QtCanvasRectangle, 
-    QtCanvasEllipse, 
-    QtCanvasLine, 
-    QtCanvasText, 
-    QtCanvasItem, 
+    QtCanvas,
+    QtCanvasView,
+    QtCanvasRectangle,
+    QtCanvasEllipse,
+    QtCanvasLine,
+    QtCanvasText,
+    QtCanvasItem,
     RttiValues
-    )
+)
 
 def rand():
     return int(random()*0x7fff)

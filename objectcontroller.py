@@ -39,11 +39,11 @@
 ##
 ############################################################################/
 import sys
-sys.path.append('QtProperty')
-sys.path.append('libqt5')
-from qtpy.QtCore import QVariant, QTimeLine
-from qtpy.QtGui import QTextDocument
-from qtpy.QtWidgets import (
+
+from libqt5.compat import QVariant
+from PySide2.QtCore import QTimeLine
+from PySide2.QtGui import QTextDocument
+from PySide2.QtWidgets import (
     QDialog,
     QComboBox,
     QToolButton,
@@ -54,12 +54,12 @@ from qtpy.QtWidgets import (
     QPushButton,
     QTreeWidget,
     QCalendarWidget,
-    QAction, 
+    QAction,
     QApplication
 )
-from pyqtcore import QMap, QList, QMapMap
-from qtvariantproperty import QtVariantPropertyManager, QtVariantEditorFactory
-from qttreepropertybrowser import QtTreePropertyBrowser
+from libqt5.pyqtcore import QMap, QList, QMapMap
+from QtProperty.qtvariantproperty import QtVariantPropertyManager, QtVariantEditorFactory
+from QtProperty.qttreepropertybrowser import QtTreePropertyBrowser
 
 class ObjectControllerPrivate():
     def __init__(self):
@@ -183,7 +183,7 @@ class ObjectControllerPrivate():
                             subProperty.setValue(self.flagToInt(metaProperty.enumerator(), metaProperty.read(self.m_object)))
                         else:
                             subProperty.setValue(self.enumToInt(metaProperty.enumerator(), metaProperty.read(self.m_object)))
-                    else: 
+                    else:
                         subProperty.setValue(metaProperty.read(self.m_object))
 
     def addClassProperties(self, metaObject):
@@ -219,7 +219,7 @@ class ObjectControllerPrivate():
                         subProperty.setAttribute("flagNames", flagNames)
                         subProperty.setValue(self.flagToInt(metaEnum, metaProperty.read(self.m_object)))
 
-                    else: 
+                    else:
                         subProperty = self.m_manager.addProperty(QtVariantPropertyManager.enumTypeId(), metaProperty.name())
                         metaEnum = metaProperty.enumerator()
                         valueMap = QMap() # dont show multiple enum values which have the same values
@@ -241,7 +241,7 @@ class ObjectControllerPrivate():
                     else:
                         subProperty = self.m_manager.addProperty(type, metaProperty.name())
                     subProperty.setValue(metaProperty.read(self.m_object))
-                else: 
+                else:
                     subProperty = self.m_readOnlyManager.addProperty(QVariant.String, metaProperty.name())
                     subProperty.setValue("< Unknown Type >")
                     subProperty.setEnabled(False)
@@ -250,7 +250,7 @@ class ObjectControllerPrivate():
                 self.m_propertyToIndex[subProperty] = idx
                 self.m_classToIndexToProperty[metaObject][idx] = subProperty
 
-        else: 
+        else:
             self.updateClassProperties(metaObject, False)
 
         self.m_topLevelProperties.append(classProperty)
@@ -275,7 +275,7 @@ class ObjectControllerPrivate():
                 metaProperty.write(self.m_object, self.intToFlag(metaProperty.enumerator(), value))
             else:
                 metaProperty.write(self.m_object, self.intToEnum(metaProperty.enumerator(), value))
-        else: 
+        else:
             metaProperty.write(self.m_object, value)
 
         self.updateClassProperties(metaObject, True)

@@ -39,16 +39,16 @@
 ##
 #############################################################################
 
-from qtpropertybrowserutils import (
-    QtKeySequenceEdit, 
+from QtProperty.qtpropertybrowserutils import (
+    QtKeySequenceEdit,
     QtBoolEdit,
     QtPropertyBrowserUtils
-    )
-from pyqtcore import QMapList, QList, QMap
-from qtpropertybrowser import QtAbstractEditorFactory
-from qtpropertymanager import QtEnumPropertyManager, cursorDatabase
-from qtpy.QtCore import Qt, QEvent, Signal
-from qtpy.QtWidgets import (
+)
+from libqt5.pyqtcore import QMapList, QList, QMap
+from QtProperty.qtpropertybrowser import QtAbstractEditorFactory
+from QtProperty.qtpropertymanager import QtEnumPropertyManager, cursorDatabase
+from PySide2.QtCore import Qt, QEvent, Signal
+from PySide2.QtWidgets import (
     QStyle,
     QWidget,
     QSpinBox,
@@ -70,9 +70,8 @@ from qtpy.QtWidgets import (
     QTimeEdit,
     QToolButton,
     QLabel
-
-    )
-from qtpy.QtGui import (
+)
+from PySide2.QtGui import (
     QPainter,
     QRegExpValidator,
     QKeySequence,
@@ -80,7 +79,8 @@ from qtpy.QtGui import (
     QBrush,
     QIcon,
     QFont,
-    QColor)
+    QColor
+)
 
 # Set a hard coded left margin to account for the indentation
 # of the tree view icon when switching to an editor

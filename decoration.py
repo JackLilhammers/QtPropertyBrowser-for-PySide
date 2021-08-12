@@ -40,15 +40,13 @@
 ############################################################################/
 import sys
 
-sys.path.append('QtProperty')
-sys.path.append('libqt5')
-from qtpy.QtCore import Signal
-from qtpy.QtWidgets import QApplication, QDoubleSpinBox
-from pyqtcore import QMap, QMapList
-from qtpropertymanager import QtDoublePropertyManager
-from qteditorfactory import QtAbstractEditorFactory, QtDoubleSpinBoxFactory, registerEditorFactory
-from qtpropertybrowser import QtProperty
-from qttreepropertybrowser import QtTreePropertyBrowser
+from PySide2.QtCore import Signal
+from PySide2.QtWidgets import QApplication, QDoubleSpinBox
+from libqt5.pyqtcore import QMap, QMapList
+from QtProperty.qtpropertymanager import QtDoublePropertyManager
+from QtProperty.qteditorfactory import QtAbstractEditorFactory, QtDoubleSpinBoxFactory, registerEditorFactory
+from QtProperty.qtpropertybrowser import QtProperty
+from QtProperty.qttreepropertybrowser import QtTreePropertyBrowser
 
 class DecoratedDoublePropertyManager(QtDoublePropertyManager):
     prefixChangedSignal = Signal(QtProperty, str)
@@ -128,7 +126,7 @@ class DecoratedDoubleSpinBoxFactory(QtAbstractEditorFactory):
 
         self.propertyToData = QMap()
         # We delegate responsibilities for QtDoublePropertyManager, which is a base class
-        #   of DecoratedDoublePropertyManager to appropriate 
+        #   of DecoratedDoublePropertyManager to appropriate
         self.originalFactory = QtDoubleSpinBoxFactory(self)
         self.createdEditors = QMapList()
         self.editorToProperty = QMap()

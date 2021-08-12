@@ -39,43 +39,39 @@
 ##
 #############################################################################
 import sys
-import os
-filePath = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(filePath,'QtProperty'))
-sys.path.append(os.path.join(filePath,'libqt5'))
-#print(sys.path)
+
 from array import array
-from qtpy.QtGui import QTransform as QMatrix
-from qtpy.QtCore import (
-    Qt, 
-    QRect, 
-    QTimer, 
-    QPoint, 
-    QSize, 
-    qWarning, 
-    QRectF, 
-    Signal, 
+from PySide2.QtGui import QTransform as QMatrix
+from PySide2.QtCore import (
+    Qt,
+    QRect,
+    QTimer,
+    QPoint,
+    QSize,
+    qWarning,
+    QRectF,
+    Signal,
     QObject
 )
-from qtpy.QtGui import (
-    QRegion, 
-    QImage, 
-    QPolygon, 
-    QPixmap, 
-    QPainter, 
-    QPainterPath, 
-    QPen, 
-    QBrush, 
-    QFontMetrics, 
-    QFont, 
+from PySide2.QtGui import (
+    QRegion,
+    QImage,
+    QPolygon,
+    QPixmap,
+    QPainter,
+    QPainterPath,
+    QPen,
+    QBrush,
+    QFontMetrics,
+    QFont,
     QColor
 )
-from qtpy.QtWidgets import (
+from PySide2.QtWidgets import (
     QWidget,
-    QApplication, 
+    QApplication,
     QScrollArea
 )
-from pyqtcore import QSet, QList
+from libqt5.pyqtcore import QSet, QList
 from enum import Enum
 
 class QPolygonEx(QPolygon):
@@ -212,7 +208,7 @@ def collision_double_dispatch(s1, p1, r1, e1, t1, s2, p2, r2, e2, t2):
 
         return col
     else:
-        return collision_double_dispatch(s2, p2, r2, e2, t2, 
+        return collision_double_dispatch(s2, p2, r2, e2, t2,
                                          s1, p1, r1, e1, t1)
 
 class Edge(Enum):
@@ -765,7 +761,7 @@ class QtCanvas(QObject):
             #    \overload
             #
             #    Returns a list of canvas items which intersect with the chunks
-            #    listed in \a chunklist, excluding \a item. If \a exact is True, 
+            #    listed in \a chunklist, excluding \a item. If \a exact is True,
             #    only those which actually \link QtCanvasItem.collidesWith()
             #    collide with\endlink \a item are returned; otherwise canvas items
             #    are included just for being in the chunks.
@@ -2383,7 +2379,7 @@ class QtCanvasPixmapArray():
             #    The \a fc parameter sets the number of frames to be loaded for
             #    this image.
             #
-            #    If \a fc is not 0, \a datafilenamepattern should contain "%1", 
+            #    If \a fc is not 0, \a datafilenamepattern should contain "%1",
             #    e.g. "foo%1.png". The actual filenames are formed by replacing the
             #    %1 with four-digit integers from 0 to (fc - 1), e.g. foo0000.png,
             #    foo0001.png, foo0002.png, etc.
@@ -3025,7 +3021,7 @@ class QtCanvasView(QScrollArea):
     #    on a QtCanvas.
     #
     #    The mostly rectangular classes, such as QtCanvasSprite and
-    #    QtCanvasText, use the object's bounding rectangle for movement, 
+    #    QtCanvasText, use the object's bounding rectangle for movement,
     #    repainting and collision calculations. For most other items, the
     #    bounding rectangle can be far too large -- a diagonal line being
     #    the worst case, and there are many other cases which are also bad.
@@ -3555,7 +3551,7 @@ class QtCanvasSpline(QtCanvasPolygon):
     #    point is required, and the number of control points must be one of
     #    (4, 7, 10, 13, ...).
     #
-    #    If the number of control points doesn't meet the above conditions, 
+    #    If the number of control points doesn't meet the above conditions,
     #    the number of points will be truncated to the largest number of
     #    points that do meet the requirement.
     ###
@@ -4348,7 +4344,7 @@ class QtCanvasSprite(QtCanvasItem):
     def collidesWith(self, s, *args):
         if len(args) == 0:
             return s.collidesWith(self, 0, 0, 0, 0)
-        return collision_double_dispatch(s, args[0], args[1], args[2], args[3], self, 0, 0, 0, 0) 
+        return collision_double_dispatch(s, args[0], args[1], args[2], args[3], self, 0, 0, 0, 0)
     ###
     #    Set the array of images used for displaying the sprite to the
     #    QtCanvasPixmapArray \a a.
@@ -4384,14 +4380,14 @@ class QtCanvasSprite(QtCanvasItem):
     ###
     def __del__(self):
         self.removeFromChunks()
-        
+
     def frame(self):
         return self.frm
 
     def frameCount(self):
         return self.images.count()
     ###
-    #    Sets the animation frame used for displaying the sprite to \a f, 
+    #    Sets the animation frame used for displaying the sprite to \a f,
     #    an index into the QtCanvasSprite's QtCanvasPixmapArray. The call
     #    will be ignored if \a f is larger than frameCount() or smaller
     #    than 0.
@@ -4731,13 +4727,13 @@ class QtPolygonScanner():
 #     The basic algorithm is to start at the top (smallest y)
 #     of the polygon, stepping down to the bottom of
 #     the polygon by incrementing the y coordinate.  We
-#     keep a list of edges which the current scanline crosses, 
+#     keep a list of edges which the current scanline crosses,
 #     sorted by x.  This list is called the Active Edge Table (AET)
 #     As we change the y-coordinate, we update each entry in
 #     in the active edge table to reflect the edges new xcoord.
 #     This list must be sorted at each scanline in case
 #     two edges intersect.
-#     We also keep a data structure known as the Edge Table (ET), 
+#     We also keep a data structure known as the Edge Table (ET),
 #     which keeps track of all the edges which the current
 #     scanline has not yet reached.  The ET is basically a
 #     list of ScanLineList structures containing a list of
@@ -4764,7 +4760,7 @@ class QtPolygonScanner():
 #Permission is hereby granted, free of charge, to any person obtaining
 #a copy of this software and associated documentation files (the
 #"Software"), to deal in the Software without restriction, including
-#without limitation the rights to use, copy, modify, merge, publish, 
+#without limitation the rights to use, copy, modify, merge, publish,
 #distribute, sublicense, and/or sell copies of the Software, and to
 #permit persons to whom the Software is furnished to do so, subject to
 #the following conditions:
@@ -4776,7 +4772,7 @@ class QtPolygonScanner():
 #OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 #MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #IN NO EVENT SHALL THE X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR
-#OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+#OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 #ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #OTHER DEALINGS IN THE SOFTWARE.
 #
@@ -4798,7 +4794,7 @@ class QtPolygonScanner():
 # *     algorithm used is an extension of Bresenham's line
 # *     drawing algorithm which assumes that y is always the
 # *     major axis.
-# *     Since these pieces of code are the same for any filled shape, 
+# *     Since these pieces of code are the same for any filled shape,
 # *     it is more convenient to gather the library in one
 # *     place, but since these pieces of code are also in
 # *     the inner loops of output primitives, procedure call
@@ -4933,7 +4929,7 @@ def EVALUATEEDGEWINDING(pAET, pPrevAET, y, fixWAET=1):
 # ###
 def EVALUATEEDGEEVENODD(pAET, pPrevAET, y):
     if pAET:
-        if (pAET.ymax == y):          ### leaving this edge ### 
+        if (pAET.ymax == y):          ### leaving this edge ###
             pPrevAET.next = pAET.next
             pAET = pPrevAET.next
             if pAET:
@@ -4959,7 +4955,7 @@ def EVALUATEEDGEEVENODD(pAET, pPrevAET, y):
 #all copies or substantial portions of the Software.
 #
 #THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 #FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
 #X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
 #AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
@@ -4975,7 +4971,7 @@ def EVALUATEEDGEEVENODD(pAET, pPrevAET, y):
 #                        All Rights Reserved
 #
 #Permission to use, copy, modify, and distribute this software and its
-#documentation for any purpose and without fee is hereby granted, 
+#documentation for any purpose and without fee is hereby granted,
 #provided that the above copyright notice appear in all copies and that
 #both that copyright notice and this permission notice appear in
 #supporting documentation, and that the name of Digital not be
@@ -4985,8 +4981,8 @@ def EVALUATEEDGEEVENODD(pAET, pPrevAET, y):
 #DIGITAL DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
 #ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
 #DIGITAL BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
-#ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
-#WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, 
+#ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+#WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
 #ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 #SOFTWARE.
 #
@@ -5077,7 +5073,7 @@ def miInsertEdgeInET(ET, ETE, scanline, SLLBlock, iSLLBlock):
 #                    V             V
 #              list of ETEs   list of ETEs
 #
-#     where ETE is an EdgeTableEntry data structure, 
+#     where ETE is an EdgeTableEntry data structure,
 #     and there is one ScanLineList per scanline at
 #     which an edge is initially entered.
 #
@@ -5099,8 +5095,8 @@ def miFreeStorage(pSLLBlock):
 def BRESINITPGONSTRUCT(dy, x1, x2, bres):
     dx = 0      # local storage #
     ###
-    #  if the edge is horizontal, then it is ignored 
-    #  and assumed not to be processed.  Otherwise, do this stuff. 
+    #  if the edge is horizontal, then it is ignored
+    #  and assumed not to be processed.  Otherwise, do this stuff.
     ###
     if dy != 0:
         bres.minor = x1
@@ -5194,7 +5190,7 @@ def miCreateETandAET(count, pts, ET, AET, pETEs, pSLLBlock):
 #     loadAET
 #
 #     This routine moves EdgeTableEntries from the
-#     EdgeTable into the Active Edge Table, 
+#     EdgeTable into the Active Edge Table,
 #     leaving them sorted by smaller x coordinate.
 #
 ###

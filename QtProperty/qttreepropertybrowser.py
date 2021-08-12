@@ -39,9 +39,9 @@
 ##
 #############################################################################
 import ctypes
-from qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
-from qtpy.QtCore import Qt, QRect, QSize, QEvent, QCoreApplication, Signal, Property
-from qtpy.QtWidgets import (
+from QtProperty.qtpropertybrowser import QtAbstractPropertyBrowser, QtBrowserItem
+from PySide2.QtCore import Qt, QRect, QSize, QEvent, QCoreApplication, Signal, Property
+from PySide2.QtWidgets import (
     QHBoxLayout, QItemDelegate,
     QHeaderView, QApplication, QStyle,
     QTreeWidget,
@@ -49,14 +49,15 @@ from qtpy.QtWidgets import (
     QTreeWidgetItem,
     QStyleOption,
     QAbstractItemView
-    )
-from qtpy.QtGui import (
+)
+from PySide2.QtGui import (
     QIcon, QPainter,
     QPalette, QPen,
     QFontMetrics, QColor,
-    QPixmap)
+    QPixmap
+)
 
-from pyqtcore import QList, QMap
+from libqt5.pyqtcore import QList, QMap
 
 ## Draw an icon indicating opened/closing branches
 def drawIndicatorIcon(palette, style):
@@ -745,7 +746,7 @@ class QtTreePropertyBrowser(QtAbstractPropertyBrowser):
     def setScrollPosition(self, dx, dy):
         self.d_ptr.m_treeWidget.horizontalScrollBar().setValue(dx)
         self.d_ptr.m_treeWidget.verticalScrollBar().setValue(dy)
-        
+
     ###
     #   \property QtTreePropertyBrowser::splitterPosition
     #   \brief the position of the splitter between the colunms.
